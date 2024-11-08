@@ -1,7 +1,5 @@
-// src/MerkleTree.cpp
-
 #include "MerkleTree.h"
-#include <openssl/sha.h>
+#include "sha256.h"  // Use your custom sha256 header
 
 using namespace std;
 
@@ -41,11 +39,20 @@ shared_ptr<MerkleNode> MerkleTree::buildTree(const vector<Transaction>& transact
     return nodes.empty() ? nullptr : nodes[0]; // Return root node
 }
 
-// Compute the SHA256 hash of the given data
+// Compute the SHA256 hash of the given data using your custom calc_sha_256 function
 string MerkleTree::hash(const string& data) const {
-    unsigned char hash[SHA256_DIGEST_LENGTH];
-    SHA256((unsigned char*)data.c_str(), data.size(), hash);
-    return string(hash, hash + SHA256_DIGEST_LENGTH);
+    uint8_t hash[SIZE_OF_SHA_256_HASH];  // Declare the hash array
+    
+    // Call the custom SHA-256 function
+    calc_sha_256(hash, data.c_str(), data.size());
+
+    // Convert hash to hexadecimal string
+    stringstream ss;
+    for (int i = 0; i < SIZE_OF_SHA_256_HASH; ++i) {
+        ss << hex << setw(2) << setfill('0') << (int)hash[i];
+    }
+    
+    return ss.str();
 }
 
 // Get the root hash of the Merkle tree
