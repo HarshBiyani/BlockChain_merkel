@@ -1,5 +1,7 @@
 #include "MerkleTree.h"
 #include "sha256.h"  // Use your custom sha256 header
+#include <sstream>    // For stringstream
+#include <iomanip>    // For setw, setfill, and hex
 
 using namespace std;
 
@@ -46,7 +48,7 @@ string MerkleTree::hash(const string& data) const {
     // Call the custom SHA-256 function
     calc_sha_256(hash, data.c_str(), data.size());
 
-    // Convert hash to hexadecimal string
+    // Convert hash to hexadecimal string using stringstream
     stringstream ss;
     for (int i = 0; i < SIZE_OF_SHA_256_HASH; ++i) {
         ss << hex << setw(2) << setfill('0') << (int)hash[i];
