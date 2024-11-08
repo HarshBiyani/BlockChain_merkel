@@ -4,8 +4,6 @@
 #define TRANSACTION_H
 
 #include <string>
-#include <ctime>
-#include <sstream>
 
 // Class representing a financial transaction
 class Transaction {
@@ -15,28 +13,14 @@ public:
     float amount;             // Amount transferred
     std::string timestamp;    // Time of transaction
 
-    // Constructor to initialize transaction with sender, receiver, amount, and current timestamp
-    Transaction(std::string sender, std::string receiver, float amount) 
-        : sender(sender), receiver(receiver), amount(amount) {
-        // Set timestamp to the current time
-        std::time_t now = std::time(nullptr);
-        std::stringstream ss;
-        ss << std::asctime(std::localtime(&now));
-        timestamp = ss.str();
-    }
+    // Constructor to initialize transaction with sender, receiver, and amount
+    Transaction(const std::string& sender, const std::string& receiver, float amount);
 
     // Method to serialize transaction details
-    std::string serialize() const {
-        return sender + receiver + std::to_string(amount) + timestamp;
-    }
+    std::string serialize() const;
 
-    // Define equality operator to allow comparison between transactions
-    bool operator==(const Transaction& other) const {
-        return sender == other.sender &&
-               receiver == other.receiver &&
-               amount == other.amount &&
-               timestamp == other.timestamp;
-    }
+    // Equality operator to allow comparison between transactions
+    bool operator==(const Transaction& other) const;
 };
 
 #endif // TRANSACTION_H
