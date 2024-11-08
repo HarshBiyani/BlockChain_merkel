@@ -1,6 +1,3 @@
-Here's the content for `README.md` that you can directly copy and save as a file:
-
-```markdown
 # Blockchain with Merkle Trees
 
 This project implements a simple blockchain in C++ using Merkle trees for secure and efficient transaction verification. The blockchain supports the addition of new blocks containing multiple transactions, and each block’s integrity is verified by hashing the transactions into a Merkle root.
@@ -48,7 +45,6 @@ project-folder/
 │   ├── sha256.cpp         # Standalone SHA-256 implementation source
 │   └── main.cpp           # Main entry point
 └── README.md              # Project README file
-```
 
 ---
 
