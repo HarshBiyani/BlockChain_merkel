@@ -1,8 +1,7 @@
-// src/main.cpp
 
 #include <iostream>
-#include "Transaction.h"
 #include "Blockchain.h"
+#include "Transaction.h"
 
 using namespace std;
 
@@ -14,6 +13,8 @@ void displayMenu() {
     cout << "4. View the blockchain\n";
     cout << "5. Verify a transaction\n";
     cout << "6. Validate blockchain\n";
+    cout << "7. Save blockchain to file\n";
+    cout << "8. Load blockchain from file\n";
     cout << "0. Exit\n";
     cout << "Choose an option: ";
 }
@@ -47,6 +48,9 @@ int main() {
     Blockchain blockchain;
     vector<Transaction> transactionPool;
     int choice;
+
+
+    blockchain.loadFromFile("blockchain_data.txt");
 
     while (true) {
         displayMenu();
@@ -142,6 +146,16 @@ int main() {
                 } else {
                     cout << "Blockchain is invalid!\n";
                 }
+                break;
+            }
+
+            case 7: { // Save blockchain to file
+                blockchain.saveToFile("blockchain_data.txt");
+                break;
+            }
+
+            case 8: { // Load blockchain from file
+                blockchain.loadFromFile("blockchain_data.txt");
                 break;
             }
 

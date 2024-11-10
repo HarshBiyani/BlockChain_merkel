@@ -45,7 +45,7 @@ project-folder/
 │   ├── sha256.cpp         # Standalone SHA-256 implementation source
 │   └── main.cpp           # Main entry point
 └── README.md              # Project README file
-
+```
 ---
 
 ## Setup and Compilation
